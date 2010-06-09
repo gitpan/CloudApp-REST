@@ -9,11 +9,11 @@ CloudApp::REST::Item::Video - Video item class of CloudApp::REST
 
 =head1 VERSION
 
-Version 0.0.2
+Version 0.1.1
 
 =cut
 
-our $VERSION = '0.0.2';
+our $VERSION = '0.1.1';
 
 has item_type => (is => 'ro', required => 1, isa => 'Str', default => 'video',);
 has remote_url => (is => 'ro', required => 1, isa => Uri, coerce => 1);
