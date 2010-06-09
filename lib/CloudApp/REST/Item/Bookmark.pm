@@ -9,11 +9,11 @@ CloudApp::REST::Item::Boomark - Boomark item class of CloudApp::REST
 
 =head1 VERSION
 
-Version 0.01
+Version 0.0.2
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.0.2';
 
 has item_type => (is => 'ro', required => 1, isa => 'Str', default => 'boomark',);
 has redirect_url => (is => 'ro', required => 0, isa => Uri, coerce => 1);

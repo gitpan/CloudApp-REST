@@ -15,11 +15,11 @@ CloudApp::REST - Perl Interface to the CloudApp REST API
 
 =head1 VERSION
 
-Version 0.01
+Version 0.0.2
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.0.2';
 
 has useragent => (
     is       => 'ro',
@@ -69,21 +69,45 @@ Here's an example on how to retrieve the last 5 items:
 
 =head1 SUBROUTINES/METHODS
 
-=head2 new( )
+=head2 new
 
 Creates and returns a new instance.
 
-=head2 username( $username )
+=head2 username
 
-Sets the username for requests that need authentication.  Unless you only use L<get_item|get_item____params__>
+Parameters:
+
+=over
+
+=item C<$username>
+
+=back
+
+Sets the username for requests that need authentication.  Unless you only use L</get_item>
 a username is required.
 
-=head2 password( $password )
+=head2 password
 
-Sets the password for requests that need authentication.  Unless you only use L<get_item|get_item____params__>
+Parameters:
+
+=over
+
+=item C<$password>
+
+=back
+
+Sets the password for requests that need authentication.  Unless you only use L</get_item>
 a password is required.
 
-=head2 get_item( \%params )
+=head2 get_item
+
+Parameters:
+
+=over
+
+=item C<\%params>
+
+=back
 
 Gets a single item from CloudApp and returns the appropriate C<CloudApp::REST::Item::*> module.
 Only one of the following parameters should be given.  However, if C<uri> is given, C<slug>
@@ -118,7 +142,15 @@ sub get_item {
     return $self->_build_item($item_attrs);
 }
 
-=head2 get_items( \%params )
+=head2 get_items
+
+Parameters:
+
+=over
+
+=item C<\%params>
+
+=back
 
 Gets some or all items from CloudApp, depending on the parameters you pass in.  Returns an arrayref
 or array (depending on your context) of appropriate C<CloudApp::REST::Item::*> objects.
@@ -159,7 +191,7 @@ an empty list will be returned by this method.
 =item I<deleted =E<gt> $bool>
 
 Set to a true value if you want only items from the trash.  Defaults to C<false>.  You may want
-to use the shortcut L<get_trash|get_trash____params__> instead.
+to use the shortcut L</get_trash> instead.
 
 =back
 
@@ -180,10 +212,18 @@ sub get_items {
     return $self->_build_items($hashed_items);
 }
 
-=head2 get_trash( \%params )
+=head2 get_trash
 
-Accepts the same parameters as L<get_items|get_items____params__>, except for C<deleted>.  L<get_trash|get_trash____params__> is
- nly a small wrapper around L<get_items|get_items____params__>.
+Parameters:
+
+=over
+
+=item C<\%params>
+
+=back
+
+Accepts the same parameters as L</get_items>, except for C<deleted>.  L</get_trash> is
+ nly a small wrapper around L</get_items>.
 
 =cut
 
@@ -195,7 +235,15 @@ sub get_trash {
     return $self->get_items($params);
 }
 
-=head2 create_bookmark( \%params )
+=head2 create_bookmark
+
+Parameters:
+
+=over
+
+=item C<\%params>
+
+=back
 
 Creates a bookmark at CloudApp and returns the newly created bookmark as a L<CloudApp::REST::Item::Bookmark> object.
 
@@ -239,7 +287,15 @@ sub create_bookmark {
     return $self->_build_item($bookmark);
 }
 
-=head2 create_file( \%params );
+=head2 create_file
+
+Parameters:
+
+=over
+
+=item C<\%params>
+
+=back
 
 Uploads a local file to CloudApp and returns the corresponding C<CloudApp::REST::Item::*> object.
 
@@ -250,7 +306,7 @@ Uploads a local file to CloudApp and returns the corresponding C<CloudApp::REST:
 I<Required.>
 
 The path to the file that will be uploaded.  If the file is not accessible or does not exist,
-L<create_file|create_file____params___> dies before trying to upload.
+L</create_file> dies before trying to upload.
 
 =back
 
@@ -272,7 +328,15 @@ sub create_file {
     return ref $res eq 'ARRAY' ? $self->_build_items($res) : $self->_build_item($res);
 }
 
-=head2 delete_item( $item)
+=head2 delete_item
+
+Parameters:
+
+=over
+
+=item C<$item>
+
+=back
 
 Deletes an item at CloudApp.  C<$item> has to be an C<CloudApp::REST::Item::*> object.
 
@@ -291,14 +355,22 @@ sub delete_item {
     return 1;
 }
 
-=head2 authenticate( \%params )
+=head2 authenticate
 
-Instead of using L<username|username___username__> and L<password|password___password__> directly you can
-pass along both parameters to L<authenticate|authenticate____params__> to set the user data.
+Parameters:
 
-If one of the following parameters are not given, L<authenticate|authenticate____params__> tries to find them in
-L<username|username___username__> or L<password|password___password__>.  If either parameter cannot be found,
-L<authenticate|authenticate____params__> dies.
+=over
+
+=item C<\%params>
+
+=back
+
+Instead of using L</username> and L</password> directly you can
+pass along both parameters to L</authenticate> to set the user data.
+
+If one of the following parameters are not given, L</authenticate> tries to find them in
+L</username> or L</password>.  If either parameter cannot be found,
+L</authenticate> dies.
 
 =over 4
 
@@ -306,17 +378,17 @@ L<authenticate|authenticate____params__> dies.
 
 =item I<user =E<gt> $username>
 
-Username to authenticate with.  Use one of them to access L<username|username___username__>.
+Username to authenticate with.  Use one of them to access L</username>.
 
 =item I<password =E<gt> $password>
 
 =item I<pass =E<gt> $password>
 
-Password to authenticate with.  Use one of them to access L<password|password___password__>.
+Password to authenticate with.  Use one of them to access L</password>.
 
 =back
 
-B<Note:> the credentails passed through L<authenticate|authenticate____params__> are B<not> saved within the instance
+B<Note:> the credentails passed through L</authenticate> are B<not> saved within the instance
 data of L<CloudApp::REST>. As result only one request is handled with authentication, all
 following will be processed without it.  Note that some API calles require authentication
 and if this data is not present when calling such a method, that method will die.
@@ -342,36 +414,92 @@ or settings.  Use them as methods.
 
 =over 4
 
-=item debug( $bool )
+=item debug
+
+Parameters:
+
+=over
+
+=item C<$bool>
+
+=back
 
 Activates the debug mode by passing a true value.  Defaults to C<0>.  Debug messages are
 printed with C<warn>.
 
-=item agent_name( $new_name )
+=item agent_name
+
+Parameters:
+
+=over
+
+=item C<$new_name>
+
+=back
 
 Redefines the name of the user agent, defaults to module name and version.
 
-=item private_base_url( $url )
+=item private_base_url
+
+Parameters:
+
+=over
+
+=item C<$url>
+
+=back
 
 The hostname and the scheme of the private area (when auth is needed).  Defaults
 to C<http://my.cl.ly/>.  I<Usually there is no need to change this!>
 
-=item public_base_url( $url )
+=item public_base_url
+
+Parameters:
+
+=over
+
+=item C<$url>
+
+=back
 
 The hostname and the scheme of the public area (when auth is not needed).  Defaults
 to C<http://cl.ly/>.  I<Usually there is no need to change this!>
 
-=item auth_netloc( $netloc )
+=item auth_netloc
+
+Parameters:
+
+=over
+
+=item C<$netloc>
+
+=back
 
 The so called C<netloc> for authentication, as L<LWP::UserAgent> requires.  Defaults
 to C<my.cl.ly:80>.  I<Usually there is no need to change this!>
 
-=item auth_realm( $realm )
+=item auth_realm
+
+Parameters:
+
+=over
+
+=item C<$real>
+
+=back
 
 The so-called C<realm> for authentication, as required by L<LWP::UserAgent> and the
 CloudApp API.  Defaults to C<Application>.  I<Usually there is no need to change this!>
 
-=item proxy( $proxy_url )
+=item proxy
+
+Parameters:
+
+=over
+
+=item C<$proxy_url>
+
+=back
 
 If you need to set a proxy, use this method.  Pass in a proxy URL and port for
 an C<http> proxy.  If not set, no proxy is used.
@@ -380,7 +508,15 @@ an C<http> proxy.  If not set, no proxy is used.
 
 =head1 INTERNAL METHODS
 
-=head2 _build_item( \%item )
+=head2 _build_item
+
+Parameters:
+
+=over
+
+=item C<\%item>
+
+=back
 
 Expects an hashref of an item and returns the
 appropriate C<CloudApp::REST::Item::*> module.
@@ -406,7 +542,15 @@ sub _build_item {
     return $item_instance;
 }
 
-=head2 _build_items( \@items )
+=head2 _build_items
+
+Parameters:
+
+=over
+
+=item C<\@items>
+
+=back
 
 Expects an arrayref of items and returns a list
 of appropriate C<CloudApp::REST::Item::*> objects as arrayref or array,
@@ -426,7 +570,15 @@ sub _build_items {
     return wantarray ? @items : \@items;
 }
 
-=head2 _get_response( \%params )
+=head2 _get_response
+
+Parameters:
+
+=over
+
+=item C<\%params>
+
+=back
 
 Executes each request and communicates with the CloudApp API.
 
@@ -438,7 +590,7 @@ The URI that is requested, eg. C<http://my.cl.ly/items?page=1&per_page=5>.
 
 =item I<method =E<gt> $method>
 
-The HTTP method of the request type.  If the parameter C<params> to L<_get_response|_get_response____params__>
+The HTTP method of the request type.  If the parameter C<params> to L</_get_response>
 is set, C<method> is ignored and set to C<POST>, otherwise to the value of C<method>.  Defaults
 to C<GET> in all other cases.
 
@@ -533,7 +685,14 @@ sub _get_response {
     }
 }
 
-=head2 _debug( @msgs )
+=head2 _debug
+Parameters:
+
+=over
+
+=item C<@msgs>
+
+=back
 
 Small debug message handler that C<warn>s C<@msgs> joined with a line break.  Only prints if C<debug> set to C<true>.
 

@@ -11,11 +11,11 @@ CloudApp::REST::Item - Base class for all items
 
 =head1 VERSION
 
-Version 0.01
+Version 0.0.2
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.0.2';
 
 use MooseX::Types::DateTimeX qw(DateTime);
 use MooseX::Types::URI qw(Uri);
@@ -124,13 +124,13 @@ The date when this item was deleted at CloudApp.  If set, returns a L<DateTime> 
 
 Following methods are inherited by every C<CloudApp::REST::Item::*> module:
 
-=head2 delete( )
+=head2 delete
 
 Deletes the current item at CloudApp.  The item instance can be used after deleting
 as long as the instance won't go out of scope, but won't be updated automatically.
 CloudApp moves this item to the trash after detelion.
 
-Dies if the item is L<stripped|strip___>.
+Dies if the item is L</strip>ed.
 
 =cut
 
@@ -142,7 +142,7 @@ sub delete {
     $self->_REST->_delete_item($self);
 }
 
-=head2 strip( )
+=head2 strip
 
 Removes the reference to L<CloudApp::REST>.
 

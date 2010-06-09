@@ -5,10 +5,16 @@ WriteMakefile
           'NAME' => 'CloudApp::REST',
           'VERSION_FROM' => 'lib/CloudApp/REST.pm',
           'PREREQ_PM' => {
+                           'Carp' => 0,
+                           'Data::Dumper' => 0,
+                           'HTTP::Request' => 0,
+                           'JSON::XS' => 0,
+                           'LWP::UserAgent' => 0,
                            'Moose' => 0,
                            'Moose::Role' => 0,
                            'MooseX::Types::DateTimeX' => 0,
                            'MooseX::Types::URI' => 0,
+                           'Readonly' => 0,
                            'Test::More' => 0
                          },
           'INSTALLDIRS' => 'site',
