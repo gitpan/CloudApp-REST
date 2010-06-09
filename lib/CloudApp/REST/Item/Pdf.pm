@@ -9,11 +9,11 @@ CloudApp::REST::Item::Pdf - Pdf item class of CloudApp::REST
 
 =head1 VERSION
 
-Version 0.1.1
+Version 0.01_01
 
 =cut
 
-our $VERSION = '0.1.1';
+our $VERSION = '0.01_01';
 
 has item_type => (is => 'ro', required => 1, isa => 'Str', default => 'pdf',);
 has remote_url => (is => 'ro', required => 1, isa => Uri, coerce => 1);

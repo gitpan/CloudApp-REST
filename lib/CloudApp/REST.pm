@@ -15,11 +15,11 @@ CloudApp::REST - Perl Interface to the CloudApp REST API
 
 =head1 VERSION
 
-Version 0.1.1
+Version 0.01_01
 
 =cut
 
-our $VERSION = '0.1.1';
+our $VERSION = '0.01_01';
 
 has useragent => (
     is       => 'ro',
