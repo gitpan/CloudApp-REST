@@ -9,11 +9,11 @@ CloudApp::REST::Item::Unknown - Unknown item class of CloudApp::REST
 
 =head1 VERSION
 
-Version 0.01_04
+Version 0.01_05
 
 =cut
 
-our $VERSION = '0.01_04';
+our $VERSION = '0.01_05';
 
 has item_type => (is => 'ro', required => 1, isa => 'Str', default => 'unknown',);
 has remote_url => (is => 'ro', required => 0, isa => Uri, coerce => 1);

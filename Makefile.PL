@@ -10,6 +10,7 @@ WriteMakefile
                            'HTTP::Request' => 0,
                            'JSON::XS' => 0,
                            'LWP::UserAgent' => 0,
+                           'Module::Load' => 0,
                            'Moose' => 0,
                            'Moose::Role' => 0,
                            'MooseX::Types::DateTimeX' => 0,

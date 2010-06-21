@@ -11,11 +11,11 @@ CloudApp::REST::Item - Base class for all items
 
 =head1 VERSION
 
-Version 0.01_04
+Version 0.01_05
 
 =cut
 
-our $VERSION = '0.01_04';
+our $VERSION = '0.01_05';
 
 use MooseX::Types::DateTimeX qw(DateTime);
 use MooseX::Types::URI qw(Uri);
