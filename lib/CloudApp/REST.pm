@@ -6,7 +6,7 @@ use MooseX::Types::URI qw(Uri);
 use LWP::UserAgent;
 use HTTP::Request;
 use JSON::XS;
-use UNIVERSAL::require;
+use Module::Load;
 use Data::Dumper;
 
 =head1 NAME
@@ -15,11 +15,11 @@ CloudApp::REST - Perl Interface to the CloudApp REST API
 
 =head1 VERSION
 
-Version 0.01_03
+Version 0.01_04
 
 =cut
 
-our $VERSION = '0.01_03';
+our $VERSION = '0.01_04';
 
 has useragent => (
     is       => 'ro',
@@ -535,7 +535,7 @@ sub _build_item {
     }
 
     my $module = __PACKAGE__ . '::Item::' . ucfirst($type);
-    $module->use or die $@;
+    load $module;
 
     my $item_instance = $module->new($item_attrs);
 
