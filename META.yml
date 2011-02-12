@@ -26,35 +26,26 @@ name: CloudApp-REST
 provides:
   CloudApp::REST:
     file: lib/CloudApp/REST.pm
-    version: 0.01_05
+    version: 0.02
   CloudApp::REST::Item:
     file: lib/CloudApp/REST/Item.pm
-    version: 0.01_05
   CloudApp::REST::Item::Archive:
     file: lib/CloudApp/REST/Item/Archive.pm
-    version: 0.01_05
   CloudApp::REST::Item::Audio:
     file: lib/CloudApp/REST/Item/Audio.pm
-    version: 0.01_05
   CloudApp::REST::Item::Bookmark:
     file: lib/CloudApp/REST/Item/Bookmark.pm
-    version: 0.01_05
   CloudApp::REST::Item::Image:
     file: lib/CloudApp/REST/Item/Image.pm
-    version: 0.01_05
   CloudApp::REST::Item::Pdf:
     file: lib/CloudApp/REST/Item/Pdf.pm
-    version: 0.01_05
   CloudApp::REST::Item::Text:
     file: lib/CloudApp/REST/Item/Text.pm
-    version: 0.01_05
   CloudApp::REST::Item::Unknown:
     file: lib/CloudApp/REST/Item/Unknown.pm
-    version: 0.01_05
   CloudApp::REST::Item::Video:
     file: lib/CloudApp/REST/Item/Video.pm
-    version: 0.01_05
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://github.com/rainboxx/CloudApp-REST/
-version: 0.01_05
+version: 0.02
